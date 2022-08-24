@@ -15,7 +15,7 @@ apply plugin: 'net.minecraftforge.gradle.tweaker-client'
 apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'java'
 
-String tweakerClass = 'io.github.axst.api.launch.LuxTweaker'
+String tweakerClass = 'io.github.sdxqw.lux.api.launch.LuxTweaker'
 String tweaker = 'lux'
 
 compileJava {
@@ -55,6 +55,8 @@ configurations {
 dependencies {
 	compileOnly('org.projectlombok:lombok:1.18.24')
 	annotationProcessor('org.projectlombok:lombok:1.18.24')
+	compileOnly('com.github.Vatuu:discord-rpc:1.6.2')
+	compileOnly('org.slick2d:slick2d-core:1.0.2')
 	tclmdk('org.spongepowered:mixin:0.7.11-SNAPSHOT') {
 		exclude module: 'launchwrapper'
 		exclude module: 'guava'

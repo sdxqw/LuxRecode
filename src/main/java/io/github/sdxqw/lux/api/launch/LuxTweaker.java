@@ -1,4 +1,4 @@
-package io.github.axst.api.launch;
+package io.github.sdxqw.lux.api.launch;
 
 import java.io.File;
 import java.util.ArrayList;

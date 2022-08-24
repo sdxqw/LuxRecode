@@ -1,4 +1,4 @@
-package io.github.axst.client;
+package io.github.sdxqw.lux.client.util;
 
 import lombok.Getter;
 import lombok.SneakyThrows;
@@ -6,14 +6,14 @@ import lombok.SneakyThrows;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class Reference {
+public class ReferenceUtils {
 
     @Getter
-    public static final String name = "LuxRecode";
+    public static final String name = "Lux Recode";
     @Getter
     public static final String version = "1.0";
 
-    private Reference() {
+    private ReferenceUtils() {
     }
 
     @SneakyThrows
