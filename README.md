@@ -1,32 +1,22 @@
 <h1 align="center">
-  <a href="https://github.com/sdxqw/TCL-Java">TCL-Java</a>
+  <a href="https://github.com/sdxqw/LuxRecode">TCL-Java</a>
 </h1>
 
-<h4 align="center">Tweaker class based in Gradle.</h4>
+<h4 align="center">LuxRecode because yes.</h4>
 
-# Start using TCL-Java
-Please check our [_**GUIDE**_](https://github.com/AxstSoftware/TCL-Java/wiki)</br>
-Please check how to use [_**MIXINS Wiki**_](https://github.com/SpongePowered/Mixin/wiki) / [_**MIXINS Docs**_](https://jenkins.liteloader.com/view/Other/job/Mixin/javadoc/index.html) / [_**MIXINS Discord**_](https://discord.gg/sponge) / [_**MIXINS PaceCodes**_](https://github.com/PaceCodes/Mixin-Tutorial) / [_**MIXINS Cheatsheet**_](https://github.com/2xsaiko/mixin-cheatsheet) / [_**MIXINS explanation (check what you need)**_](https://www.youtube.com/watch?v=HQUkWjMWTik)
-
-## Key Features
-
-* Easy to use!
-* Clear and simple to follow instructions!
-* Provided with sample code!
+# Start using LuxRecode
+Please check [_**TCL-java**_](https://github.com/AxstSoftware/TCL-Java/wiki)</br>
 
 # Thanks
 
-thanks to xcfrg for repo!</br>
-thanks to asbyth for repo!</br>
-thanks to TheKodeToad for his repo so i could fix mine!</br>
+to the official code of LuxClient
 
 ## Contributing
 
-Ways to contribute to TCL-Java:
+Ways to contribute to LuxRecode:
 
-* Making an fork of the project
+* Making some commit ex(fixes, new features...)
 * Sharing this repo
-* Help improve the guide
 
 ---
 <h6 align="center">
