@@ -4,6 +4,7 @@ import io.github.sdxqw.lux.client.ui.render.*;
 import io.github.sdxqw.lux.client.util.ReferenceUtils;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiSelectWorld;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
@@ -11,7 +12,8 @@ import org.lwjgl.opengl.GL11;
 import java.awt.*;
 import java.util.Collections;
 
-import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_SRC_ALPHA;
+import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
 
 public class UiMainMenu extends UiScreen {
 
@@ -22,13 +24,13 @@ public class UiMainMenu extends UiScreen {
         int displayTextY = this.height - 35;
         this.addButton(
                 new UiButton(0, sr.getScaledWidth() / 2 - 70, sr.getScaledHeight() / 2 - 10, 140, 18, "Singleplayer"),
-                new UiButton(1, sr.getScaledWidth() / 2 - 70, sr.getScaledHeight() / 2 + 12 , 140, 18, "Multiplayer"),
+                new UiButton(1, sr.getScaledWidth() / 2 - 70, sr.getScaledHeight() / 2 + 12, 140, 18, "Multiplayer"),
                 new UiIconButton(2, 5, buttonY, 20, 20, displayTextX, displayTextY, "main_menu/cart.png", "Store"),
                 new UiIconButton(3, 28, buttonY, 20, 20, displayTextX, displayTextY, "main_menu/changelog.png", "Patch Notes"),
                 new UiIconButton(4, 51, buttonY, 20, 20, displayTextX, displayTextY, "main_menu/bulb.png", "Lux Settings"),
                 new UiIconButton(5, 74, buttonY, 20, 20, displayTextX, displayTextY, "main_menu/cog.png", "Game Settings"),
                 new UiIconButton(6, this.width - 23, 5, 20, 20, this.width - 21, 28, "close.png", "Quit"),
-                new UiAccountButton(7,this.width - 128, 5)
+                new UiAccountButton(7, this.width - 128, 5)
         );
     }
 
@@ -42,7 +44,13 @@ public class UiMainMenu extends UiScreen {
         GL11.glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         UiFontRenderer.getTitleBold().drawCenteredTextScaled(ReferenceUtils.getName().toUpperCase(), sr.getScaledWidth() / 2, sr.getScaledHeight() / 2 - 28, -1, 0.6);
         String s = "COPYRIGHT MOJANG AB. DO NOT DISTRIBUTE!";
-        UiFontRenderer.getText().drawString(s, this.width - UiFontRenderer.getText().getWidth(s) - 5, this.height - 11, new Color(255,255,255).getRGB());
+        UiFontRenderer.getText().drawString(s, this.width - UiFontRenderer.getText().getWidth(s) - 5, this.height - 11, new Color(255, 255, 255).getRGB());
+    }
+
+    @Override
+    protected void actionPerformed(GuiButton button) {
+        if (button.id == 0)
+            mc.displayGuiScreen(new GuiSelectWorld(this));
     }
 
     private void addButton(GuiButton... a) {
