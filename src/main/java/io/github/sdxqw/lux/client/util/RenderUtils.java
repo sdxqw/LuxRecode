@@ -1,12 +1,30 @@
 package io.github.sdxqw.lux.client.util;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.ThreadDownloadImageData;
+import net.minecraft.util.ResourceLocation;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.lwjgl.opengl.GL11.*;
 
 public class RenderUtils {
 
+    private static final Map<String, ResourceLocation> playerSkins = new HashMap<>();
+
     private RenderUtils() {
+    }
+
+    public static ResourceLocation getHeadLocation(String displayName) {
+        ResourceLocation playerSkin = playerSkins.getOrDefault(displayName, new ResourceLocation("lux/" + displayName + ".png"));
+        if (!playerSkins.containsKey(displayName)) {
+            ThreadDownloadImageData skinData = new ThreadDownloadImageData(null, "https://minotar.net/helm/" + displayName + "/32.png", new ResourceLocation("lux/steve.png"), null);
+            (Minecraft.getMinecraft()).getTextureManager().loadTexture(playerSkin, skinData);
+            playerSkins.put(displayName, playerSkin);
+        }
+        return playerSkin;
     }
 
     public static void setColor(int color) {

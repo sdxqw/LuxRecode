@@ -1,9 +1,6 @@
 package io.github.sdxqw.lux.client.ui.screen;
 
-import io.github.sdxqw.lux.client.ui.render.UiButton;
-import io.github.sdxqw.lux.client.ui.render.UiFontRenderer;
-import io.github.sdxqw.lux.client.ui.render.UiIconButton;
-import io.github.sdxqw.lux.client.ui.render.UiRenderPictures;
+import io.github.sdxqw.lux.client.ui.render.*;
 import io.github.sdxqw.lux.client.util.ReferenceUtils;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
@@ -29,7 +26,9 @@ public class UiMainMenu extends UiScreen {
                 new UiIconButton(2, 5, buttonY, 20, 20, displayTextX, displayTextY, "main_menu/cart.png", "Store"),
                 new UiIconButton(3, 28, buttonY, 20, 20, displayTextX, displayTextY, "main_menu/changelog.png", "Patch Notes"),
                 new UiIconButton(4, 51, buttonY, 20, 20, displayTextX, displayTextY, "main_menu/bulb.png", "Lux Settings"),
-                new UiIconButton(5, 74, buttonY, 20, 20, displayTextX, displayTextY, "main_menu/cog.png", "Game Settings")
+                new UiIconButton(5, 74, buttonY, 20, 20, displayTextX, displayTextY, "main_menu/cog.png", "Game Settings"),
+                new UiIconButton(6, this.width - 23, 5, 20, 20, this.width - 21, 28, "close.png", "Quit"),
+                new UiAccountButton(7,this.width - 128, 5)
         );
     }
 
