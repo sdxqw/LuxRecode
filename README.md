@@ -1,8 +1,10 @@
 <h1 align="center">
-  <a href="https://github.com/sdxqw/LuxRecode">TCL-Java</a>
+  <a href="https://github.com/sdxqw/LuxRecode">Lux Recode</a>
 </h1>
 
 <h4 align="center">LuxRecode because yes.</h4>
+
+![img.png](img.png)
 
 # Start using LuxRecode
 Please check [_**TCL-java**_](https://github.com/AxstSoftware/TCL-Java/wiki)</br>

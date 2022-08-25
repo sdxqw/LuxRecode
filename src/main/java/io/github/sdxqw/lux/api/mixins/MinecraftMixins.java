@@ -1,7 +1,7 @@
 package io.github.sdxqw.lux.api.mixins;
 
 import io.github.sdxqw.lux.LuxRecode;
-import io.github.sdxqw.lux.client.ui.UiSplashScreen;
+import io.github.sdxqw.lux.client.ui.screen.UiSplashScreen;
 import io.github.sdxqw.lux.client.util.ReferenceUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureManager;

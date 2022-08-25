@@ -1,5 +1,6 @@
-package io.github.sdxqw.lux.client.ui;
+package io.github.sdxqw.lux.client.ui.screen;
 
+import io.github.sdxqw.lux.client.ui.render.UiFontRenderer;
 import io.github.sdxqw.lux.client.util.ReferenceUtils;
 import io.github.sdxqw.lux.client.util.RenderUtils;
 import net.minecraft.client.Minecraft;
@@ -69,24 +70,30 @@ public class UiSplashScreen {
         renderGood2();
         Gui.drawModalRectWithCustomSizedTexture(res.getScaledWidth() / 2 - 26, res.getScaledHeight() / 2 - 60, 0, 0, 52, 52, 52, 52);
 
-        double progressWidth = ((double) currentStep / MAX_STEPS) * 180;
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        GL11.glEnable(GL11.GL_LINE_SMOOTH);
-        glEnable(GL_POINT_SMOOTH);
-        GL11.glEnable(GL13.GL_MULTISAMPLE);
-        RenderUtils.drawRoundedRect(res.getScaledWidth() / 2 - 90, res.getScaledHeight() / 2 + 20, 180, 10, 3, new Color(255, 255, 255, 30));
-        RenderUtils.drawRoundedRect(res.getScaledWidth() / 2 - 90, res.getScaledHeight() / 2 + 19, (int) progressWidth, 12, 3, new Color(255, 255, 255, 30));
-        RenderUtils.drawRoundedOutline(res.getScaledWidth() / 2 - 90, res.getScaledHeight() / 2 + 20, res.getScaledWidth() / 2 + 90, res.getScaledHeight() / 2 + 30, 4, res.getScaleFactor(), new Color(255, 255, 255, 150).getRGB());
+        ScaledResolution sr = new ScaledResolution(mc);
+
+        double scaledWidth = sr.getScaledWidth_double();
+        double scaledHeight = sr.getScaledHeight_double();
+
+        float width = 160.0f;
+        float height = 80.0F;
+        float x = (float) scaledWidth / 2.0f - 80.0f;
+        float y = (float) scaledHeight - 40.0f;
+
+        float loadedWidth = width * ((float) currentStep / MAX_STEPS);
+
+        RenderUtils.drawRoundedRect(x - 10, y - 72, x + width + 10, y - height + 19, 6, new Color(255, 255, 255, 30).getRGB());
+        RenderUtils.drawRoundedOutline((int) x - 10, (int) y - 72.5f, (int) (x + width) + 10, (int) (y - height + 19.5f), 6, 2,   new Color(255, 255, 255, 150).getRGB());
+        RenderUtils.drawRoundedRect(x - 10, y - 72.5f, x + loadedWidth + 10, y - height + 19.5f, 6,  new Color(255, 255, 255, 30).getRGB());
 
         GL11.glEnable(GL11.GL_LINE_SMOOTH);
         GL11.glEnable(GL13.GL_MULTISAMPLE);
         glEnable(GL_BLEND);
-        FontRenderer.getTitleBold().drawCenteredTextScaled(ReferenceUtils.getName().toUpperCase(), res.getScaledWidth() / 2, res.getScaledHeight() / 2 - 8, -1, 0.6F);
+        UiFontRenderer.getTitleBold().drawCenteredTextScaled(ReferenceUtils.getName().toUpperCase(), res.getScaledWidth() / 2, res.getScaledHeight() / 2 - 8, -1, 0.6F);
         GL11.glEnable(GL11.GL_LINE_SMOOTH);
         GL11.glEnable(GL13.GL_MULTISAMPLE);
         glEnable(GL_BLEND);
-        FontRenderer.getText().drawCenteredTextScaled(currentText.toUpperCase(), res.getScaledWidth() / 2, res.getScaledHeight() / 2 + 32, new Color(255, 255, 255, 150).getRGB(), 1.2F);
+        UiFontRenderer.getText().drawCenteredTextScaled(currentText.toUpperCase(), res.getScaledWidth() / 2, res.getScaledHeight() / 2 + 32, new Color(255, 255, 255, 150).getRGB(), 1.2F);
     }
 
     private static void renderGood() {
