@@ -39,10 +39,10 @@ public class UiMainMenu extends UiScreen {
         mc.getTextureManager().bindTexture(new ResourceLocation("lux/panorama/normal/background.png"));
         GL11.glColor3f(1.0F, 1.0F, 1.0F);
         Gui.drawModalRectWithCustomSizedTexture(-22 + (Mouse.getX() / 90), (Mouse.getY() * -1 / 90), 0, 0, width + 20, height + 18, width + 21f, height + 20f);
-        new UiRenderPictures(sr.getScaledWidth() / 2 - 26, sr.getScaledHeight() / 2 - 80, 52, 52, "luxlogo.png").drawPicture();
+        new UiRenderPictures(sr.getScaledWidth() / 2 - 26, sr.getScaledHeight() / 2 - 84, 52, 52, "luxlogo.png").drawPicture();
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        UiFontRenderer.getTitleBold().drawCenteredTextScaled(ReferenceUtils.getName().toUpperCase(), sr.getScaledWidth() / 2, sr.getScaledHeight() / 2 - 28, -1, 0.6);
+        UiFontRenderer.getTitleBold().drawCenteredTextScaled(ReferenceUtils.getName().toUpperCase(), sr.getScaledWidth() / 2, sr.getScaledHeight() / 2 - 32, -1, 1);
         String s = "COPYRIGHT MOJANG AB. DO NOT DISTRIBUTE!";
         UiFontRenderer.getText().drawString(s, this.width - UiFontRenderer.getText().getWidth(s) - 5, this.height - 11, new Color(255, 255, 255).getRGB());
     }

@@ -82,18 +82,18 @@ public class UiSplashScreen {
 
         float loadedWidth = width * ((float) currentStep / MAX_STEPS);
 
-        RenderUtils.drawRoundedRect(x - 10, y - 72, x + width + 10, y - height + 19, 6, new Color(255, 255, 255, 30).getRGB());
-        RenderUtils.drawRoundedOutline((int) x - 10, (int) y - 72.5f, (int) (x + width) + 10, (int) (y - height + 19.5f), 6, 2,   new Color(255, 255, 255, 150).getRGB());
-        RenderUtils.drawRoundedRect(x - 10, y - 72.5f, x + loadedWidth + 10, y - height + 19.5f, 6,  new Color(255, 255, 255, 30).getRGB());
+        RenderUtils.drawRoundedRect(x - 10, y - 62, x + width + 10, y - height + 32, 6, new Color(255, 255, 255, 30).getRGB());
+        RenderUtils.drawRoundedRect(x - 10, y - 62.5f, x + loadedWidth + 10, y - height + 32.5f, 6,  new Color(255, 255, 255, 30).getRGB());
+        RenderUtils.drawRoundedOutline((int) x - 10, (int) y - 62, (int) (x + width) + 10, (int) (y - height + 32), 6, 2, new Color(164, 172, 180, 255).getRGB());
 
         GL11.glEnable(GL11.GL_LINE_SMOOTH);
         GL11.glEnable(GL13.GL_MULTISAMPLE);
         glEnable(GL_BLEND);
-        UiFontRenderer.getTitleBold().drawCenteredTextScaled(ReferenceUtils.getName().toUpperCase(), res.getScaledWidth() / 2, res.getScaledHeight() / 2 - 8, -1, 0.6F);
+        UiFontRenderer.getTitleBold().drawCenteredTextScaled(ReferenceUtils.getName().toUpperCase(), res.getScaledWidth() / 2, res.getScaledHeight() / 2 - 8, -1, 1);
         GL11.glEnable(GL11.GL_LINE_SMOOTH);
         GL11.glEnable(GL13.GL_MULTISAMPLE);
         glEnable(GL_BLEND);
-        UiFontRenderer.getText().drawCenteredTextScaled(currentText.toUpperCase(), res.getScaledWidth() / 2, res.getScaledHeight() / 2 + 32, new Color(255, 255, 255, 150).getRGB(), 1.2F);
+        UiFontRenderer.getText().drawCenteredTextScaled(currentText.toUpperCase(), res.getScaledWidth() / 2, res.getScaledHeight() / 2 + 32, new Color(255, 255, 255, 150).getRGB(), 1F);
     }
 
     private static void renderGood() {
