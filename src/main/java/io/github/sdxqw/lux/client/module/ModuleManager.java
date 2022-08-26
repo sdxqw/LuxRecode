@@ -1,6 +1,6 @@
 package io.github.sdxqw.lux.client.module;
 
-import io.github.sdxqw.lux.client.module.impl.TestRender;
+import io.github.sdxqw.lux.client.module.features.FPSMod;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -10,19 +10,19 @@ import java.util.List;
 @Getter
 public class ModuleManager {
 
-    private final List<Module> mod = new ArrayList<>();
+    protected List<ModuleBase> mods = new ArrayList<>();
 
     public ModuleManager() {
-        addModule(new TestRender());
+        addModule(new FPSMod());
     }
 
-    public void addModule(Module... module) {
-        Collections.addAll(mod, module);
+    private void addModule(ModuleBase... modules) {
+        Collections.addAll(mods, modules);
     }
 
-    public void renderModules() {
-        mod.forEach(module -> {
-            if (module.isEnabled()) module.drawInGame();
+    public void renderHooks() {
+        mods.forEach(mod -> {
+            if (mod.isEnabled() && mod instanceof ModuleRender) ((ModuleRender) mod).drawInGame();
         });
     }
 }

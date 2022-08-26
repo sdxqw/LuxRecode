@@ -1,12 +1,9 @@
 package io.github.sdxqw.lux.client.ui.screen;
 
-import io.github.sdxqw.lux.client.util.RenderUtils;
 import lombok.Getter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.input.Mouse;
-
-import java.awt.*;
 
 @Getter
 public class UIDraggableComponent {
@@ -27,11 +24,6 @@ public class UIDraggableComponent {
     }
 
     public boolean isDraggingModule(int mouseX, int mouseY) {
-        boolean hovered = mouseX >= this.getX() && mouseX <= this.getX() + this.getWidth() && mouseY >= this.getY() && mouseY <= this.getY() + this.getHeight();
-        if (hovered) {
-            RenderUtils.drawHollowRect(this.getX() - 2, this.getY() - 2, this.getWidth() + 3, this.getHeight() + 2, new Color(0, 204, 255, 152).getRGB());
-        } else
-            RenderUtils.drawHollowRect(this.getX() - 2, this.getY() - 2, this.getWidth() + 3, this.getHeight() + 2, new Color(170, 170, 170, 100).getRGB());
         if (this.draggingModule) {
             this.x = mouseX + this.lastX;
             this.y = mouseY + this.lastY;

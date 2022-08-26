@@ -4,7 +4,10 @@
 
 <h4 align="center">LuxRecode because yes.</h4>
 
+![img.png](img.png)
+![img_1.png](img_1.png)
 ![img_2.png](img_2.png)
+![img_3.png](img_3.png)
 
 # Start using LuxRecode
 Please check [_**TCL-java**_](https://github.com/AxstSoftware/TCL-Java/wiki)</br>

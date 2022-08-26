@@ -1,6 +1,7 @@
 package io.github.sdxqw.lux.api.mixins;
 
 import io.github.sdxqw.lux.LuxRecode;
+import io.github.sdxqw.lux.api.events.EventTick;
 import io.github.sdxqw.lux.client.ui.screen.UiSplashScreen;
 import io.github.sdxqw.lux.client.util.ReferenceUtils;
 import net.minecraft.client.Minecraft;
@@ -31,8 +32,13 @@ public class MinecraftMixins {
     }
 
     @Redirect(method = "startGame", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Minecraft;drawSplashScreen(Lnet/minecraft/client/renderer/texture/TextureManager;)V"))
-    private void mixin(Minecraft mc, TextureManager tm) {
+    private void customLoadingScreen(Minecraft mc, TextureManager tm) {
         UiSplashScreen.update("Loading");
     }
 
+    @Inject(method = "runTick", at = @At("HEAD"))
+    public void eventClientTick(CallbackInfo ci) {
+        EventTick event = new EventTick();
+        LuxRecode.getInstance().getBus().post(event);
+    }
 }

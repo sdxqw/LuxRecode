@@ -12,7 +12,7 @@ public class GuiIngameMixins {
 
     @Inject(method = "renderGameOverlay", at = @At("RETURN"))
     private void runTick(CallbackInfo info) {
-        LuxRecode.getInstance().getModule().renderModules();
+        LuxRecode.getInstance().getModule().renderHooks();
     }
 
 }

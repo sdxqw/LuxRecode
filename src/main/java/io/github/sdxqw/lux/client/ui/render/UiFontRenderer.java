@@ -14,7 +14,5 @@ public class UiFontRenderer {
     private static final CustomFontRenderer textBold = new CustomFontRenderer("normal_bold", 12);
     @Getter
     private static final CustomFontRenderer hud = new CustomFontRenderer("mods", 15);
-
-    private UiFontRenderer() {
-    }
+    private UiFontRenderer() {}
 }
