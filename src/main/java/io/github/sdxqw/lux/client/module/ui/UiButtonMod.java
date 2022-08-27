@@ -37,6 +37,7 @@ public class UiButtonMod {
         GL11.glEnable(GL13.GL_MULTISAMPLE);
         RenderUtils.drawRoundedRect(this.x, this.y, this.x + this.width, this.y + this.height, 4, new Color(0, 0, 0, 100).getRGB());
         RenderUtils.drawRoundedOutline(this.x, this.y, this.x + this.width, this.y + this.height, 4, 2, getEnabled());
+
         glEnable(GL_BLEND);
         UiFontRenderer.getText().drawCenteredTextScaled(this.getModule().getName().toUpperCase(), this.x + (this.width >> 1), this.y + 40, new Color(255, 255, 255, 150).getRGB(), 1F);
         if (!getModule().getIcon().getResourcePath().equals(""))

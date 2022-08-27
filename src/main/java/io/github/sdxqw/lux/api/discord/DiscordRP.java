@@ -22,7 +22,17 @@ public class DiscordRP {
 
     public void startDiscordRPC() {
         DiscordEventHandlers.Builder builder = new DiscordEventHandlers.Builder();
-        builder.setReadyEventHandler(user -> DiscordRP.getInstance().update("Playing Minecraft 1.8.9", user.username));
+        builder.setReadyEventHandler(user -> {
+            String prefix = "Playing Minecraft 1.8.9";
+            if ("hobbyshop".equalsIgnoreCase(user.username)) {
+                DiscordRP.getInstance().update(prefix, "HornyShop [Old Owner]");
+            } else if ("noah.".equalsIgnoreCase(user.username)) {
+                DiscordRP.getInstance().update(prefix, "Noah. [Owner]");
+            } else {
+                DiscordRP.getInstance().update(prefix, user.username);
+            }
+        });
+
         DiscordEventHandlers handlers = builder.build();
         DiscordRPC.discordInitialize("906992886074208256", handlers, true);
     }
