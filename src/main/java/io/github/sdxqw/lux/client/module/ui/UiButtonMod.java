@@ -5,6 +5,8 @@ import io.github.sdxqw.lux.client.ui.render.UiFontRenderer;
 import io.github.sdxqw.lux.client.ui.render.UiRenderPictures;
 import io.github.sdxqw.lux.client.util.RenderUtils;
 import lombok.Getter;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
 
@@ -50,8 +52,24 @@ public class UiButtonMod {
     }
 
     public void onClick(int mouseX, int mouseY, int button) {
-        if(mouseX >= x && mouseY >= y && mouseX < x + width && mouseY < y + height && button == 0) {
+        if(this.isHovered(mouseX, mouseY) && button == 0) {
             getModule().toggleModules();
         }
     }
+
+    private boolean isHovered(int mouseX, int mouseY) {
+        ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
+        // check if inside of ui list
+        return (mouseX >= sr.getScaledWidth() / 2 - 175 &&
+                mouseY >= sr.getScaledHeight() / 2 - 95 &&
+                mouseX < sr.getScaledWidth() / 2 + 175 &&
+                mouseY < sr.getScaledHeight() / 2 + 95)
+                &&
+                // check if hovered
+                (mouseX >= x &&
+                mouseY >= y &&
+                mouseX < x + width &&
+                mouseY < y + height);
+    }
+
 }
