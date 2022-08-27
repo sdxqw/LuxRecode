@@ -53,7 +53,7 @@ public class UiPanelMod extends UiScreen {
             GL11.glPushMatrix();
             ScissorsUtils.enable();
             ScissorsUtils.select(sr.getScaledWidth() / 2 - 175, sr.getScaledHeight() / 2 - 95, sr.getScaledWidth() / 2 + 175, sr.getScaledHeight() / 2 + 95);
-            e.drawButton();
+            e.drawButton(mouseX, mouseY);
             if (wheel < 0) {
                 e.y -= 16;
             } else if (wheel > 0) {
