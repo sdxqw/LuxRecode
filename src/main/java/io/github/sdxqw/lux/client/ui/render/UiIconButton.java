@@ -20,13 +20,15 @@ public class UiIconButton extends GuiButton {
     protected int textX;
     protected int textY;
     protected String text;
+    protected boolean bordered;
 
-    public UiIconButton(int buttonId, int x, int y, int widthIn, int heightIn, int textX, int textY, String iconName, String textToDisplay) {
+    public UiIconButton(int buttonId, int x, int y, int widthIn, int heightIn, int textX, int textY, String iconName, String textToDisplay, boolean bordered) {
         super(buttonId, x, y, widthIn, heightIn, "");
         this.location = new ResourceLocation("lux/icons/" + iconName);
         this.textX = textX;
         this.textY = textY;
         this.text = textToDisplay;
+        this.bordered = bordered;
     }
 
     @Override
@@ -34,12 +36,14 @@ public class UiIconButton extends GuiButton {
         if(isHovered(mouseX, mouseY)) {
             if(hoverFade < 1.5) hoverFade += 0.05;
         } else if(hoverFade > 1.0) hoverFade -= 0.05;
-        Color c = new Color(255, 255, 255, 30);
-        Color newC = new Color(c.getRed(), c.getGreen(), c.getBlue(), (int) (c.getAlpha() * hoverFade));
-        GL11.glEnable(GL11.GL_LINE_SMOOTH);
-        GL11.glEnable(GL11.GL_POINT_SMOOTH);
-        RenderUtils.drawRoundedRect(this.xPosition, this.yPosition, this.xPosition + this.width, this.yPosition + this.height, 5, newC.getRGB());
-        RenderUtils.drawRoundedOutline(this.xPosition, this.yPosition, this.xPosition + this.width, this.yPosition + this.height, 5, 2,  new Color(164, 172, 180, 255).getRGB());
+        if (bordered) {
+            Color c = new Color(255, 255, 255, 30);
+            Color newC = new Color(c.getRed(), c.getGreen(), c.getBlue(), (int) (c.getAlpha() * hoverFade));
+            GL11.glEnable(GL11.GL_LINE_SMOOTH);
+            GL11.glEnable(GL11.GL_POINT_SMOOTH);
+            RenderUtils.drawRoundedRect(this.xPosition, this.yPosition, this.xPosition + this.width, this.yPosition + this.height, 5, newC.getRGB());
+            RenderUtils.drawRoundedOutline(this.xPosition, this.yPosition, this.xPosition + this.width, this.yPosition + this.height, 5, 2,  new Color(164, 172, 180, 255).getRGB());
+        }
         GL11.glPushMatrix();
         GL11.glDisable(GL11.GL_DEPTH_TEST);
         GL11.glEnable(GL13.GL_MULTISAMPLE);

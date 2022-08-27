@@ -9,6 +9,7 @@ import io.github.sdxqw.lux.client.ui.screen.UiScreen;
 import io.github.sdxqw.lux.client.util.RenderUtils;
 import io.github.sdxqw.lux.client.util.ScissorsUtils;
 import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
 import java.io.IOException;
@@ -25,7 +26,7 @@ public class UiPanelMod extends UiScreen {
 
     @Override
     public void initComponent(int mouseX, int mouseY, boolean shouldRender) {
-        this.buttonList.add(new UiButton(0, sr.getScaledWidth() / 2 + 160, sr.getScaledHeight() / 2 - 115, 15, 15, "X"));
+        this.buttonList.add(new UiButton(0, sr.getScaledWidth() / 2 + 160, sr.getScaledHeight() / 2 - 115, 15, 15, "X", false));
     }
 
     @Override
@@ -49,6 +50,7 @@ public class UiPanelMod extends UiScreen {
         }
         int wheel = Mouse.getDWheel();
         for (UiButtonMod e : modButtons) {
+            GL11.glPushMatrix();
             ScissorsUtils.enable();
             ScissorsUtils.select(sr.getScaledWidth() / 2 - 175, sr.getScaledHeight() / 2 - 95, sr.getScaledWidth() / 2 + 175, sr.getScaledHeight() / 2 + 95);
             e.drawButton(mouseX, mouseY);
@@ -58,6 +60,7 @@ public class UiPanelMod extends UiScreen {
                 e.y += 16;
             }
             ScissorsUtils.disable();
+            GL11.glPopMatrix();
         }
     }
 

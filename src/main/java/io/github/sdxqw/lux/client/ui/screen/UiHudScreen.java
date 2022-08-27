@@ -20,7 +20,7 @@ public class UiHudScreen extends UiScreen {
 
     @Override
     public void initComponent(int mouseX, int mouseY, boolean shouldRender) {
-        addButtons(new UiButton(0, this.width / 2 - 35, this.height / 2 + 20, 60, 20, "CLOSE"));
+        addButtons(new UiButton(0, this.width / 2 - 35, this.height / 2 + 20, 60, 20, "CLOSE", false));
     }
 
     private void addButtons(GuiButton... p) {
@@ -37,7 +37,7 @@ public class UiHudScreen extends UiScreen {
             if (module.isEnabled() && module instanceof ModuleRender) {
                 ((ModuleRender) module).drawOnScreen(mouseX, mouseY);
                 ModuleRender moduleRender = (ModuleRender) module;
-                RenderUtils.drawOutline(moduleRender.getX(), moduleRender.getY(), moduleRender.getWidth(), moduleRender.getHeight(), (int) lineWidth, new Color(137, 255, 254, 100).getRGB());
+                RenderUtils.drawOutline(moduleRender.getX(), moduleRender.getY(), moduleRender.getWidth() + 4, moduleRender.getHeight() + 4, (int) lineWidth, new Color(137, 255, 254, 100).getRGB());
                 if (module.hashCode() == this.lastDraggedMod && ((ModuleRender) module).getComponent().isDraggingModule(mouseX, mouseY)) {
                     doDrag = false;
                 }

@@ -51,6 +51,8 @@ public class UiButtonMod {
 
         Color hover = new Color(this.getEnabledColor().getRed(), this.getEnabledColor().getGreen(), this.getEnabledColor().getBlue(), hoverFade);
         RenderUtils.drawRoundedRect(this.x, this.y, this.x + this.width, this.y + this.height, 4, hover.getRGB());
+        RenderUtils.drawRoundedOutline(this.x, this.y, this.x + this.width, this.y + this.height, 4, 2, getEnabled());
+
         glEnable(GL_BLEND);
         UiFontRenderer.getText().drawCenteredTextScaled(this.getModule().getName().toUpperCase(), this.x + (this.width >> 1), this.y + 40, new Color(255, 255, 255, 150).getRGB(), 1F);
         if (!getModule().getIcon().getResourcePath().equals(""))

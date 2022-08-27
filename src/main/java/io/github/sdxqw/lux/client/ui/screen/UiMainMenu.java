@@ -24,13 +24,13 @@ public class UiMainMenu extends UiScreen {
         int displayTextX = 5;
         int displayTextY = this.height - 35;
         this.addButton(
-                new UiButton(0, sr.getScaledWidth() / 2 - 70, sr.getScaledHeight() / 2 - 10, 140, 18, "Singleplayer"),
-                new UiButton(1, sr.getScaledWidth() / 2 - 70, sr.getScaledHeight() / 2 + 12, 140, 18, "Multiplayer"),
-                new UiIconButton(2, 5, buttonY, 20, 20, displayTextX, displayTextY, "main_menu/cart.png", "Store"),
-                new UiIconButton(3, 28, buttonY, 20, 20, displayTextX, displayTextY, "main_menu/changelog.png", "Patch Notes"),
-                new UiIconButton(4, 51, buttonY, 20, 20, displayTextX, displayTextY, "main_menu/bulb.png", "Lux Settings"),
-                new UiIconButton(5, 74, buttonY, 20, 20, displayTextX, displayTextY, "main_menu/cog.png", "Game Settings"),
-                new UiIconButton(6, this.width - 23, 5, 20, 20, this.width - 21, 28, "close.png", "Quit"),
+                new UiButton(0, sr.getScaledWidth() / 2 - 70, sr.getScaledHeight() / 2 - 10, 140, 18, "Singleplayer", true),
+                new UiButton(1, sr.getScaledWidth() / 2 - 70, sr.getScaledHeight() / 2 + 12, 140, 18, "Multiplayer", true),
+                new UiIconButton(2, 5, buttonY, 20, 20, displayTextX, displayTextY, "main_menu/cart.png", "Store", true),
+                new UiIconButton(3, 28, buttonY, 20, 20, displayTextX, displayTextY, "main_menu/changelog.png", "Patch Notes", true),
+                new UiIconButton(4, 51, buttonY, 20, 20, displayTextX, displayTextY, "main_menu/bulb.png", "Lux Settings", true),
+                new UiIconButton(5, 74, buttonY, 20, 20, displayTextX, displayTextY, "main_menu/cog.png", "Game Settings", true),
+                new UiIconButton(6, this.width - 23, 5, 20, 20, this.width - 21, 28, "close.png", "Quit", true),
                 new UiAccountButton(7, this.width - 128, 5)
         );
     }
