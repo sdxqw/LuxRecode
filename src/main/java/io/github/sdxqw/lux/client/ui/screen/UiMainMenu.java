@@ -2,14 +2,15 @@ package io.github.sdxqw.lux.client.ui.screen;
 
 import io.github.sdxqw.lux.client.ui.render.*;
 import io.github.sdxqw.lux.client.util.ReferenceUtils;
-import net.minecraft.client.gui.Gui;
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiSelectWorld;
+import net.minecraft.client.gui.*;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Collections;
 
 import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_SRC_ALPHA;
@@ -42,15 +43,48 @@ public class UiMainMenu extends UiScreen {
         new UiRenderPictures(sr.getScaledWidth() / 2 - 26, sr.getScaledHeight() / 2 - 84, 52, 52, "luxlogo.png").drawPicture();
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        UiFontRenderer.getTitleBold().drawCenteredTextScaled(ReferenceUtils.getName().toUpperCase(), sr.getScaledWidth() / 2, sr.getScaledHeight() / 2 - 32, -1, 1);
+        UiFontRenderer.getTitleBold().drawCenteredTextScaled(ReferenceUtils.getName().toUpperCase(), sr.getScaledWidth() / 2, sr.getScaledHeight() / 2 - 32, -1, 0.6);
         String s = "COPYRIGHT MOJANG AB. DO NOT DISTRIBUTE!";
-        UiFontRenderer.getText().drawString(s, this.width - UiFontRenderer.getText().getWidth(s) - 5, this.height - 11, new Color(255, 255, 255).getRGB());
+        UiFontRenderer.getText().drawString(s, this.width - UiFontRenderer.getText().getWidth(s) - 5, this.height - 11, new Color(255, 255, 255, 100).getRGB());
     }
 
     @Override
     protected void actionPerformed(GuiButton button) {
-        if (button.id == 0)
-            mc.displayGuiScreen(new GuiSelectWorld(this));
+        switch (button.id) {
+            case 0:
+                mc.displayGuiScreen(new GuiSelectWorld(this));
+                break;
+
+            case 1:
+                mc.displayGuiScreen(new GuiMultiplayer(this));
+                break;
+
+            // Store
+            case 2:
+                String url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+                try {
+                    Desktop.getDesktop().browse(new URI(url));
+                } catch (Exception e) {
+                    System.err.println("Could not open url: " + url);
+                }
+                break;
+
+            // Patch Notes
+            case 3:
+                break;
+
+            // Lux Settings
+            case 4:
+                break;
+
+            case 5:
+                mc.displayGuiScreen(new GuiOptions(this, mc.gameSettings));
+                break;
+
+            case 6:
+                mc.shutdown();
+                break;
+        }
     }
 
     private void addButton(GuiButton... a) {
