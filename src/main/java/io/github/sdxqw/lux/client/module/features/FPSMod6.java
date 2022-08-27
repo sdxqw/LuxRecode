@@ -7,11 +7,11 @@ import net.minecraft.client.gui.Gui;
 
 import java.awt.*;
 
-public class FPSMod extends ModuleRender {
+public class FPSMod6 extends ModuleRender {
 
     protected String prefix = "FPS: ";
 
-    public FPSMod() {
+    public FPSMod6() {
         super("Fps mod", "test");
         initComponent(100, 100);
     }

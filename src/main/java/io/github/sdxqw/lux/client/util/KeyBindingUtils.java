@@ -7,7 +7,7 @@ import org.lwjgl.input.Keyboard;
 
 public class KeyBindingUtils {
 
-    public static final KeyBinding OPEN_HUD = new KeyBinding("Open Hud", Keyboard.KEY_E, "Lux Recode");
+    public static final KeyBinding OPEN_HUD = new KeyBinding("Open Hud", Keyboard.KEY_RSHIFT, "Lux Recode");
 
     public KeyBindingUtils() {
         addAll(OPEN_HUD);

@@ -8,7 +8,7 @@ import io.github.sdxqw.lux.api.discord.DiscordRP;
 import io.github.sdxqw.lux.api.events.EventTick;
 import io.github.sdxqw.lux.api.events.IEvents;
 import io.github.sdxqw.lux.client.module.ModuleManager;
-import io.github.sdxqw.lux.client.ui.screen.UiHudScreen;
+import io.github.sdxqw.lux.client.module.ui.UiPanelMod;
 import io.github.sdxqw.lux.client.util.KeyBindingUtils;
 import lombok.Getter;
 import net.minecraft.client.Minecraft;
@@ -26,7 +26,7 @@ public class LuxRecode {
     @EventLink
     public Listener<EventTick> someTest = event -> {
         if (KeyBindingUtils.OPEN_HUD.isPressed())
-            Minecraft.getMinecraft().displayGuiScreen(new UiHudScreen());
+            Minecraft.getMinecraft().displayGuiScreen(new UiPanelMod());
     };
     private ModuleManager module;
 

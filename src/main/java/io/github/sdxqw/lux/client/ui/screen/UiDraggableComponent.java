@@ -6,17 +6,17 @@ import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.input.Mouse;
 
 @Getter
-public class UIDraggableComponent {
+public class UiDraggableComponent {
 
     public final int width;
     public final int height;
     private int x;
-    private int y;
+    protected int y;
     private int lastX;
     private int lastY;
     private boolean draggingModule;
 
-    public UIDraggableComponent(int x, int y, int widthIn, int heightIn) {
+    public UiDraggableComponent(int x, int y, int widthIn, int heightIn) {
         this.x = x;
         this.y = y;
         this.width = widthIn;

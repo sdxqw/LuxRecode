@@ -1,15 +1,15 @@
 package io.github.sdxqw.lux.client.module;
 
-import io.github.sdxqw.lux.client.ui.screen.UIDraggableComponent;
+import io.github.sdxqw.lux.client.ui.screen.UiDraggableComponent;
 import lombok.Getter;
 
 @Getter
 public abstract class ModuleRender extends ModuleBase {
 
-    protected UIDraggableComponent component;
+    protected UiDraggableComponent component;
 
-    protected ModuleRender(String name) {
-        super(name);
+    protected ModuleRender(String name, String icon) {
+        super(name, icon);
     }
 
     /**
@@ -18,7 +18,7 @@ public abstract class ModuleRender extends ModuleBase {
      * @param y int y of the mod.
      */
     public void initComponent(int x, int y) {
-        component = new UIDraggableComponent(x, y, getWidth(), getHeight());
+        component = new UiDraggableComponent(x, y, getWidth(), getHeight());
     }
 
     public abstract void drawInGame();
