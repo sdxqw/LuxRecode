@@ -1,16 +1,16 @@
 package io.github.sdxqw.lux.client.ui.screen;
 
+import io.github.sdxqw.lux.LuxRecode;
 import io.github.sdxqw.lux.client.ui.render.*;
 import io.github.sdxqw.lux.client.util.ReferenceUtils;
 import net.minecraft.client.gui.*;
 import net.minecraft.util.ResourceLocation;
+import org.apache.logging.log4j.Level;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
-import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.Collections;
 
 import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_SRC_ALPHA;
@@ -43,7 +43,7 @@ public class UiMainMenu extends UiScreen {
         new UiRenderPictures(sr.getScaledWidth() / 2 - 26, sr.getScaledHeight() / 2 - 84, 52, 52, "luxlogo.png").drawPicture();
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        UiFontRenderer.getTitleBold().drawCenteredTextScaled(ReferenceUtils.getName().toUpperCase(), sr.getScaledWidth() / 2, sr.getScaledHeight() / 2 - 32, -1, 0.6);
+        UiFontRenderer.getTitleBold().drawCenteredTextScaled(ReferenceUtils.getName().toUpperCase(), sr.getScaledWidth() / 2, sr.getScaledHeight() / 2 - 32, -1, 1);
         String s = "COPYRIGHT MOJANG AB. DO NOT DISTRIBUTE!";
         UiFontRenderer.getText().drawString(s, this.width - UiFontRenderer.getText().getWidth(s) - 5, this.height - 11, new Color(255, 255, 255, 100).getRGB());
     }
@@ -84,6 +84,8 @@ public class UiMainMenu extends UiScreen {
             case 6:
                 mc.shutdown();
                 break;
+            default:
+                LuxRecode.getLuxLog().log(Level.INFO, "This button doesnt exists");
         }
     }
 

@@ -4,14 +4,14 @@ import io.github.sdxqw.lux.client.module.ModuleBase;
 import io.github.sdxqw.lux.client.ui.render.UiFontRenderer;
 import io.github.sdxqw.lux.client.ui.render.UiRenderPictures;
 import io.github.sdxqw.lux.client.util.RenderUtils;
-import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
 
-import java.awt.Color;
+import java.awt.*;
 
 import static org.lwjgl.opengl.GL11.GL_BLEND;
 import static org.lwjgl.opengl.GL11.glEnable;
@@ -20,13 +20,11 @@ import static org.lwjgl.opengl.GL11.glEnable;
 public class UiButtonMod {
 
     private final int x;
-    protected int y;
     private final int width;
     private final int height;
     private final ModuleBase module;
-
-    @Getter(value = AccessLevel.NONE)
-    private int hoverFade = 0;
+    @Setter
+    protected int y;
 
     public UiButtonMod(int x, int y, int width, int height, ModuleBase module) {
         this.x = x;
@@ -36,22 +34,14 @@ public class UiButtonMod {
         this.module = module;
     }
 
-    public void drawButton(int mouseX, int mouseY) {
-        if (this.isHovered(mouseX, mouseY))
-            hoverFade += 8;
-        else if (hoverFade > 0)
-            hoverFade -= 5;
-
+    public void drawButton() {
         GL11.glDisable(GL11.GL_DEPTH_TEST);
         GL11.glEnable(GL11.GL_LINE_SMOOTH);
         GL11.glEnable(GL11.GL_POINT_SMOOTH);
         GL11.glEnable(GL13.GL_MULTISAMPLE);
         RenderUtils.drawRoundedRect(this.x, this.y, this.x + this.width, this.y + this.height, 4, new Color(0, 0, 0, 100).getRGB());
         RenderUtils.drawRoundedOutline(this.x, this.y, this.x + this.width, this.y + this.height, 4, 2, getEnabledColor().getRGB());
-
-        Color hover = new Color(this.getEnabledColor().getRed(), this.getEnabledColor().getGreen(), this.getEnabledColor().getBlue(), hoverFade);
-        RenderUtils.drawRoundedRect(this.x, this.y, this.x + this.width, this.y + this.height, 4, hover.getRGB());
-        RenderUtils.drawRoundedOutline(this.x, this.y, this.x + this.width, this.y + this.height, 4, 2, getEnabled());
+        RenderUtils.drawRoundedOutline(this.x, this.y, this.x + this.width, this.y + this.height, 4, 2, getEnabledColor().getRGB());
 
         glEnable(GL_BLEND);
         UiFontRenderer.getText().drawCenteredTextScaled(this.getModule().getName().toUpperCase(), this.x + (this.width >> 1), this.y + 40, new Color(255, 255, 255, 150).getRGB(), 1F);
@@ -65,7 +55,7 @@ public class UiButtonMod {
     }
 
     public void onClick(int mouseX, int mouseY, int button) {
-        if(this.isHovered(mouseX, mouseY) && button == 0) {
+        if (this.isHovered(mouseX, mouseY) && button == 0) {
             getModule().toggleModules();
         }
     }
@@ -80,9 +70,9 @@ public class UiButtonMod {
                 &&
                 // check if hovered
                 (mouseX >= x &&
-                mouseY >= y &&
-                mouseX < x + width &&
-                mouseY < y + height);
+                        mouseY >= y &&
+                        mouseX < x + width &&
+                        mouseY < y + height);
     }
 
 }

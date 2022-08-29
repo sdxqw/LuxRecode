@@ -14,12 +14,7 @@ public class ModuleManager {
 
     public ModuleManager() {
         addModule(
-                new FPSMod(),
-                new FPSMod2(),
-                new FPSMod3(),
-                new FPSMod4(),
-                new FPSMod5(),
-                new FPSMod6()
+                new FPSMod()
         );
     }
 

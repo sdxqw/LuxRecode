@@ -5,27 +5,30 @@ import io.github.sdxqw.lux.client.module.ModuleBase;
 import io.github.sdxqw.lux.client.ui.render.UiButton;
 import io.github.sdxqw.lux.client.ui.render.UiFontRenderer;
 import io.github.sdxqw.lux.client.ui.render.UiRenderPictures;
+import io.github.sdxqw.lux.client.ui.screen.UiHudScreen;
 import io.github.sdxqw.lux.client.ui.screen.UiScreen;
 import io.github.sdxqw.lux.client.util.RenderUtils;
 import io.github.sdxqw.lux.client.util.ScissorsUtils;
+import net.minecraft.client.gui.GuiButton;
+import org.apache.logging.log4j.Level;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 
 import static org.lwjgl.opengl.GL11.GL_BLEND;
 import static org.lwjgl.opengl.GL11.glEnable;
 
 public class UiPanelMod extends UiScreen {
 
-    private final List<UiButtonMod> modButtons = new ArrayList<>();
+    private final HashSet<UiButtonMod> modButtons = new HashSet<>();
     protected int scrollAmount = 0;
 
     @Override
     public void initComponent(int mouseX, int mouseY, boolean shouldRender) {
+        this.buttonList.add(new UiButton(1, sr.getScaledWidth() / 2 - 160, sr.getScaledHeight() / 2 + 36, 80, 20, "Hud Editor", true));
         this.buttonList.add(new UiButton(0, sr.getScaledWidth() / 2 + 160, sr.getScaledHeight() / 2 - 115, 15, 15, "X", false));
     }
 
@@ -52,8 +55,8 @@ public class UiPanelMod extends UiScreen {
         for (UiButtonMod e : modButtons) {
             GL11.glPushMatrix();
             ScissorsUtils.enable();
-            ScissorsUtils.select(sr.getScaledWidth() / 2 - 175, sr.getScaledHeight() / 2 - 95, sr.getScaledWidth() / 2 + 175, sr.getScaledHeight() / 2 + 95);
-            e.drawButton(mouseX, mouseY);
+            ScissorsUtils.select(sr.getScaledWidth() / 2 - 175, sr.getScaledHeight() / 2 - 95, sr.getScaledWidth() / 2 + 135, sr.getScaledHeight() / 2 - 95);
+            e.drawButton();
             if (wheel < 0) {
                 e.y -= 16;
             } else if (wheel > 0) {
@@ -89,11 +92,26 @@ public class UiPanelMod extends UiScreen {
     }
 
     @Override
+    protected void actionPerformed(GuiButton button) {
+        switch (button.id) {
+            case 0:
+                mc.displayGuiScreen(null);
+                break;
+            case 1:
+                mc.displayGuiScreen(new UiHudScreen());
+                break;
+            default:
+                LuxRecode.getLuxLog().log(Level.INFO, "this button doesnt exists");
+        }
+    }
+
+    @Override
     public void handleMouseInput() throws IOException {
         super.handleMouseInput();
         int i = Integer.signum(Mouse.getEventDWheel());
         scrollAmount += (10 * i);
-        if (scrollAmount > 0) scrollAmount = 0;
-        if (scrollAmount < -150) scrollAmount = -150;
+        if (scrollAmount >= 0) scrollAmount = 0;
+        // manual shit
+        if (scrollAmount <= -20) scrollAmount = -20;
     }
 }

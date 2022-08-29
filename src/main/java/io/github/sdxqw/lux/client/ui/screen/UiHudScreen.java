@@ -37,7 +37,7 @@ public class UiHudScreen extends UiScreen {
             if (module.isEnabled() && module instanceof ModuleRender) {
                 ((ModuleRender) module).drawOnScreen(mouseX, mouseY);
                 ModuleRender moduleRender = (ModuleRender) module;
-                RenderUtils.drawOutline(moduleRender.getX(), moduleRender.getY(), moduleRender.getWidth() + 4, moduleRender.getHeight() + 4, (int) lineWidth, new Color(137, 255, 254, 100).getRGB());
+                RenderUtils.drawOutline(moduleRender.getX(), moduleRender.getY(), moduleRender.getWidth(), moduleRender.getHeight(), (int) lineWidth, new Color(137, 255, 254, 100).getRGB());
                 if (module.hashCode() == this.lastDraggedMod && ((ModuleRender) module).getComponent().isDraggingModule(mouseX, mouseY)) {
                     doDrag = false;
                 }
