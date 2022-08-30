@@ -19,7 +19,7 @@ String tweakerClass = 'io.github.sdxqw.lux.api.launch.LuxTweaker'
 String tweaker = 'lux'
 
 compileJava {
-	sourceCompatibility = targetCompatibility = 8
+	sourceCompatibility = targetCompatibility = JavaLanguageVersion.of(8)
 }
 
 version '1.0**'
