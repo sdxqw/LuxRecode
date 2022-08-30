@@ -14,7 +14,8 @@ public class ModuleManager {
 
     public ModuleManager() {
         addModule(
-                new FPSMod()
+                new FPSMod(),
+                new TestMod()
         );
     }
 

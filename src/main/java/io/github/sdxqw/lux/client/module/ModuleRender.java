@@ -8,7 +8,12 @@ public abstract class ModuleRender extends ModuleBase {
 
     protected UiDraggableComponent component;
 
-    protected ModuleRender(String name, String icon) {
+
+    public ModuleRender(String name, String icon, boolean enabled) {
+        super(name, icon, enabled);
+    }
+
+    public ModuleRender(String name, String icon) {
         super(name, icon);
     }
 

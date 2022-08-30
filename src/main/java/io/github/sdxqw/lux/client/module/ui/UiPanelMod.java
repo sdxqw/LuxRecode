@@ -28,8 +28,8 @@ public class UiPanelMod extends UiScreen {
 
     @Override
     public void initComponent(int mouseX, int mouseY, boolean shouldRender) {
-        this.buttonList.add(new UiButton(1, sr.getScaledWidth() / 2 - 160, sr.getScaledHeight() / 2 + 36, 80, 20, "Hud Editor", true));
         this.buttonList.add(new UiButton(0, sr.getScaledWidth() / 2 + 160, sr.getScaledHeight() / 2 - 115, 15, 15, "X", false));
+        this.buttonList.add(new UiButton(1, sr.getScaledWidth() / 2 - 160, sr.getScaledHeight() / 2 + 36, 80, 20, "Hud Editor", true));
     }
 
     @Override

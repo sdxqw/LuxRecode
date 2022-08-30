@@ -14,10 +14,14 @@ public class ModuleBase {
     @Setter
     private boolean enabled;
 
-    protected ModuleBase(String name, String icon) {
+    public ModuleBase(String name, String icon, boolean enabled) {
         this.name = name;
         this.icon = new ResourceLocation("lux/icons/mods/" + icon + ".png");
-        enabled = true;
+        this.enabled = enabled;
+    }
+
+    public ModuleBase(String name, String icon) {
+        this(name, icon, true);
     }
 
     public void toggleModules() {

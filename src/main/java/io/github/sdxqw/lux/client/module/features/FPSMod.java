@@ -12,14 +12,14 @@ public class FPSMod extends ModuleRender {
     protected String prefix = "FPS: ";
 
     public FPSMod() {
-        super("Fps mod", "test");
+        super("Fps mod", "test", false);
         initComponent(100, 100);
     }
 
     @Override
     public void drawInGame() {
-        Gui.drawRect(getX(), getY(), getX() + getWidth(), getY() + getHeight(), new Color(0, 0, 0, 120).getRGB());
-        UiFontRenderer.getText().drawCenteredString(prefix + Minecraft.getDebugFPS(), this.getX() + (this.getWidth() >> 1), (float) (this.getY() + (this.getHeight() - UiFontRenderer.getText().FONT_HEIGHT - 1) / 2), -1);
+        Gui.drawRect(getX(), getY(), getX() + getWidth(), getY() + getHeight() + 4, new Color(0, 0, 0, 120).getRGB());
+        UiFontRenderer.getText().drawCenteredString(prefix + Minecraft.getDebugFPS(), this.getX() + (this.getWidth() >> 1), (float) (this.getY() + (this.getHeight() - UiFontRenderer.getText().FONT_HEIGHT + 4) / 2), -1);
     }
 
     @Override
