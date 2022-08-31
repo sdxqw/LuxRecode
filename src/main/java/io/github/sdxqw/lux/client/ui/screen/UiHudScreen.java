@@ -1,8 +1,8 @@
 package io.github.sdxqw.lux.client.ui.screen;
 
 import io.github.sdxqw.lux.LuxRecode;
+import io.github.sdxqw.lux.client.module.IModule;
 import io.github.sdxqw.lux.client.module.ModuleBase;
-import io.github.sdxqw.lux.client.module.ModuleRender;
 import io.github.sdxqw.lux.client.ui.render.UiButton;
 import io.github.sdxqw.lux.client.util.RenderUtils;
 import net.minecraft.client.Minecraft;
@@ -34,18 +34,17 @@ public class UiHudScreen extends UiScreen {
         float lineWidth = new ScaledResolution(Minecraft.getMinecraft()).getScaleFactor() / 1.4F;
         RenderUtils.drawOutline(3, 3, this.width - 6, this.height - 6, (int) lineWidth, new Color(137, 255, 254, 100).getRGB());
         for (ModuleBase module : LuxRecode.getInstance().getModule().getMods()) {
-            if (module.isEnabled() && module instanceof ModuleRender) {
-                ((ModuleRender) module).drawOnScreen(mouseX, mouseY);
-                ModuleRender moduleRender = (ModuleRender) module;
-                RenderUtils.drawOutline(moduleRender.getX(), moduleRender.getY(), moduleRender.getWidth(), moduleRender.getHeight(), (int) lineWidth, new Color(137, 255, 254, 100).getRGB());
-                if (module.hashCode() == this.lastDraggedMod && ((ModuleRender) module).getComponent().isDraggingModule(mouseX, mouseY)) {
+            if (module.isEnabled() && module instanceof IModule) {
+                ((IModule) module).drawOnScreen(mouseX, mouseY);
+                RenderUtils.drawOutline(module.getX(), module.getY(), ((IModule) module).getWidth(), ((IModule) module).getHeight(), (int) lineWidth, new Color(137, 255, 254, 100).getRGB());
+                if (module.hashCode() == this.lastDraggedMod && module.getComponent().isDraggingModule(mouseX, mouseY)) {
                     doDrag = false;
                 }
             }
         }
 
         for (ModuleBase module : LuxRecode.getInstance().getModule().getMods()) {
-            if (doDrag && module.isEnabled() && module instanceof ModuleRender && ((ModuleRender) module).getComponent().isDraggingModule(mouseX, mouseY)) {
+            if (doDrag && module.isEnabled() && module instanceof IModule && module.getComponent().isDraggingModule(mouseX, mouseY)) {
                 doDrag = false;
                 this.lastDraggedMod = module.hashCode();
             }

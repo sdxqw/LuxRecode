@@ -1,17 +1,15 @@
 package io.github.sdxqw.lux.client.module.features;
 
-import io.github.sdxqw.lux.client.module.ModuleRender;
+import io.github.sdxqw.lux.client.module.IModule;
+import io.github.sdxqw.lux.client.module.ModuleInfo;
+import io.github.sdxqw.lux.client.module.ModuleBase;
 import io.github.sdxqw.lux.client.ui.render.UiFontRenderer;
 import net.minecraft.client.gui.Gui;
 
 import java.awt.*;
 
-public class TestMod extends ModuleRender {
-
-    public TestMod() {
-        super("Test mod", "test");
-        initComponent(60, 60);
-    }
+@ModuleInfo(name = "Test Mod", icon = "test", x = 100, y = 100)
+public class TestMod extends ModuleBase implements IModule {
 
     @Override
     public void drawInGame() {
