@@ -41,7 +41,7 @@ public class UiButton extends GuiButton {
         }
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        UiFontRenderer.getText().drawCenteredString(this.displayString.toUpperCase(), this.xPosition + (this.width >> 1), (float) (this.yPosition + ((this.height - 7) >> 1)), new Color(255,255,255).getRGB());
+        UiFontRenderer.getText().drawCenteredString(this.displayString.toUpperCase(), this.xPosition + (this.width >> 1), (float) (this.yPosition + ((this.height - 10) >> 1)), new Color(255,255,255).getRGB());
     }
 
     public boolean isHovered(int mouseX, int mouseY) {
