@@ -1,16 +1,17 @@
 package io.github.sdxqw.lux.client.module;
 
-import io.github.sdxqw.lux.client.module.features.*;
+import com.google.common.collect.Lists;
+import io.github.sdxqw.lux.client.module.features.FPSMod;
+import io.github.sdxqw.lux.client.module.features.TestMod;
 import lombok.Getter;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 @Getter
 public class ModuleManager {
 
-    protected List<ModuleBase> mods = new ArrayList<>();
+    protected List<ModuleBase> mods = Lists.newArrayList();
 
     public ModuleManager() {
         addModule(

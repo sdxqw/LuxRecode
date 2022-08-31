@@ -1,5 +1,6 @@
 package io.github.sdxqw.lux.client.module.ui;
 
+import com.google.common.collect.Lists;
 import io.github.sdxqw.lux.LuxRecode;
 import io.github.sdxqw.lux.client.module.ModuleBase;
 import io.github.sdxqw.lux.client.ui.render.UiButton;
@@ -16,14 +17,14 @@ import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
 import java.io.IOException;
-import java.util.HashSet;
+import java.util.List;
 
 import static org.lwjgl.opengl.GL11.GL_BLEND;
 import static org.lwjgl.opengl.GL11.glEnable;
 
 public class UiPanelMod extends UiScreen {
 
-    private final HashSet<UiButtonMod> modButtons = new HashSet<>();
+    private final List<UiButtonMod> modButtons = Lists.newArrayList();
     protected int scrollAmount = 0;
 
     @Override

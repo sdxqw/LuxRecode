@@ -1,15 +1,15 @@
 package io.github.sdxqw.lux.client.ui.screen;
 
+import com.google.common.collect.Lists;
 import lombok.Getter;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class UiScreen extends GuiScreen {
-    public final List<UiComponent> components = new ArrayList<>();
+    public final List<UiComponent> components = Lists.newArrayList();
 
     @Getter
     public ScaledResolution sr;
