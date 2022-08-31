@@ -20,8 +20,7 @@ public class LuxRecode {
 
     @Getter
     private static final LuxRecode instance = new LuxRecode();
-    @Getter
-    private static final Logger luxLog = LogManager.getLogger(LuxRecode.class.getName());
+    private final Logger luxLog = LogManager.getLogger(LuxRecode.class.getName());
     private final Bus<IEvents> bus = new EventBus<>();
     @EventLink
     public Listener<EventTick> someTest = event -> {

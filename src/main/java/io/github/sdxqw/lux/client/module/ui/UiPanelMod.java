@@ -102,7 +102,7 @@ public class UiPanelMod extends UiScreen {
                 mc.displayGuiScreen(new UiHudScreen());
                 break;
             default:
-                LuxRecode.getLuxLog().log(Level.INFO, "this button doesnt exists");
+                LuxRecode.getInstance().getLuxLog().log(Level.INFO, "this button doesnt exists");
         }
     }
 

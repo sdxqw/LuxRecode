@@ -85,7 +85,7 @@ public class UiMainMenu extends UiScreen {
                 mc.shutdown();
                 break;
             default:
-                LuxRecode.getLuxLog().log(Level.INFO, "This button doesnt exists");
+                LuxRecode.getInstance().getLuxLog().log(Level.INFO, "This button doesnt exists");
         }
     }
 

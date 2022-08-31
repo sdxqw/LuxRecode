@@ -29,14 +29,14 @@ public abstract class ModuleBase {
         mc = Minecraft.getMinecraft();
     }
 
+    protected void addSettings(Settings... settings) {
+        getSettings().addAll(Arrays.asList(settings));
+    }
+
     protected void initComponent() {
         if (this instanceof IModule) {
             component = new UiDraggableComponent(this.getClass().getAnnotation(ModuleInfo.class).x(), this.getClass().getAnnotation(ModuleInfo.class).y(), ((IModule) this).getWidth(), ((IModule) this).getHeight());
         }
-    }
-
-    protected void addSettings(Settings... settings) {
-        getSettings().addAll(Arrays.asList(settings));
     }
 
     public int getX() {
