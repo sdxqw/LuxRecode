@@ -18,7 +18,7 @@ public class NotificationHandler {
         while (e.hasNext()) {
             UiNotification k = e.next();
             k.drawNotification();
-            if (!k.isLiving()) {
+            if (!k.isLiving() && notifications.size() >= 1) {
                 e.remove();
             }
         }

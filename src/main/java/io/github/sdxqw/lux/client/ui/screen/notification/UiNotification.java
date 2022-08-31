@@ -13,8 +13,8 @@ public class UiNotification {
     protected String name;
     protected String description;
     protected Type type;
-
     protected int defaultTime = 150;
+    protected int yAdd = 0;
 
     public UiNotification(String name, String description, Type type) {
         this.name = name;
@@ -38,7 +38,7 @@ public class UiNotification {
                 LuxRecode.getInstance().getLuxLog().log(Level.INFO, "This notification doesnt exists.");
         }
 
-        UiFontRenderer.getText().drawString(prefix + name, 100, 100, color.getRGB());
+        UiFontRenderer.getText().drawString(prefix + name, 100, 100 + yAdd, color.getRGB());
 
         --defaultTime;
     }
