@@ -2,7 +2,6 @@ package io.github.sdxqw.lux.client.ui.screen.notification;
 
 import com.google.common.collect.Lists;
 
-import java.util.Iterator;
 import java.util.List;
 
 public class NotificationHandler {
@@ -14,14 +13,8 @@ public class NotificationHandler {
     }
 
     public void renderNotification() {
-        Iterator<UiNotification> e = notifications.listIterator();
-        while (e.hasNext()) {
-            UiNotification k = e.next();
-            k.drawNotification();
-            if (!k.isLiving() && notifications.size() >= 1) {
-                e.remove();
-            }
-        }
+        notifications.forEach(UiNotification::drawNotification);
+        notifications.removeIf(e -> !e.isLiving());
     }
 
     public void sendNotification(UiNotification notification) {
