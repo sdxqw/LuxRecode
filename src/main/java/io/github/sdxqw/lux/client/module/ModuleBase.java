@@ -12,12 +12,12 @@ import java.util.Arrays;
 import java.util.List;
 
 @Getter
-public abstract class ModuleBase {
+public class ModuleBase {
 
     private final Minecraft mc;
     private final String name;
     private final ResourceLocation icon;
-    private final List<Settings> settings = Lists.newArrayList();
+    private final List<Settings> settings;
     protected UiDraggableComponent component;
     @Setter
     private boolean enabled;
@@ -26,7 +26,14 @@ public abstract class ModuleBase {
         this.name = this.getClass().getAnnotation(ModuleInfo.class).name();
         this.icon = new ResourceLocation("lux/icons/mods/" + this.getClass().getAnnotation(ModuleInfo.class).icon() + ".png");
         this.enabled = this.getClass().getAnnotation(ModuleInfo.class).enabled();
-        mc = Minecraft.getMinecraft();
+        this.settings = Lists.newArrayList();
+        this.mc = Minecraft.getMinecraft();
+    }
+
+    public void onEnable() {
+    }
+
+    public void onDisable() {
     }
 
     protected void addSettings(Settings... settings) {
@@ -48,6 +55,12 @@ public abstract class ModuleBase {
     }
 
     public void toggleModules() {
-        setEnabled(!isEnabled());
+        if (isEnabled()) {
+            onDisable();
+            setEnabled(false);
+        } else {
+            onEnable();
+            setEnabled(true);
+        }
     }
 }

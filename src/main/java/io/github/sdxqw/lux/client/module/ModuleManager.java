@@ -1,6 +1,7 @@
 package io.github.sdxqw.lux.client.module;
 
 import com.google.common.collect.Lists;
+import io.github.sdxqw.lux.LuxRecode;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import org.reflections.Reflections;
@@ -21,6 +22,7 @@ public class ModuleManager {
         classes = reflection.getTypesAnnotatedWith(ModuleInfo.class);
         for (Class<?> e : classes) {
             mods.add((ModuleBase) e.newInstance());
+            LuxRecode.getInstance().getBus().subscribe(e.newInstance());
         }
     }
 
