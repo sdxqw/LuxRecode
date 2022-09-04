@@ -9,8 +9,9 @@ import io.github.sdxqw.lux.client.ui.render.UiRenderPictures;
 import io.github.sdxqw.lux.client.ui.screen.UiHudScreen;
 import io.github.sdxqw.lux.client.ui.screen.UiScreen;
 import io.github.sdxqw.lux.client.util.RenderUtils;
-import io.github.sdxqw.lux.client.util.ScissorsUtils;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.ScaledResolution;
 import org.apache.logging.log4j.Level;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
@@ -26,6 +27,16 @@ public class UiPanelMod extends UiScreen {
 
     private final List<UiButtonMod> modButtons = Lists.newArrayList();
     protected int scrollAmount = 0;
+
+    public static void scissor(float x, float y, float width, float height, Runnable render) {
+        GL11.glEnable(GL11.GL_SCISSOR_TEST);
+        ScaledResolution res = new ScaledResolution(Minecraft.getMinecraft());
+        float scale = res.getScaleFactor();
+        float transY = res.getScaledHeight() - y - height;
+        GL11.glScissor((int) (x * scale), (int) (transY * scale), (int) (width * scale), (int) (height * scale));
+        render.run();
+        GL11.glDisable(GL11.GL_SCISSOR_TEST);
+    }
 
     @Override
     public void initComponent(int mouseX, int mouseY, boolean shouldRender) {
@@ -54,17 +65,14 @@ public class UiPanelMod extends UiScreen {
         }
         int wheel = Mouse.getDWheel();
         for (UiButtonMod e : modButtons) {
-            GL11.glPushMatrix();
-            ScissorsUtils.enable();
-            ScissorsUtils.select(sr.getScaledWidth() / 2 - 175, sr.getScaledHeight() / 2 - 95, sr.getScaledWidth() / 2 + 135, sr.getScaledHeight() / 2 - 95);
-            e.drawButton();
-            if (wheel < 0) {
-                e.y -= 16;
-            } else if (wheel > 0) {
-                e.y += 16;
-            }
-            ScissorsUtils.disable();
-            GL11.glPopMatrix();
+            scissor((sr.getScaledWidth() >> 1) - 175, (sr.getScaledHeight() >> 1) - 95, (sr.getScaledWidth() >> 1) + 135, (sr.getScaledHeight() >> 1) - 95, () -> {
+                e.drawButton();
+                if (wheel < 0) {
+                    e.y -= 16;
+                } else if (wheel > 0) {
+                    e.y += 16;
+                }
+            });
         }
     }
 
@@ -86,9 +94,9 @@ public class UiPanelMod extends UiScreen {
     }
 
     @Override
-    protected void mouseClicked(int mouseX, int mouseY, int mouseButton) {
+    public void onClick(int mouseX, int mouseY, int state) {
         for (UiButtonMod m : modButtons) {
-            m.onClick(mouseX, mouseY, mouseButton);
+            m.onClick(mouseX, mouseY, state);
         }
     }
 
