@@ -29,24 +29,17 @@ public class TestMod extends ModuleBase implements IModule {
 
     @Override
     public void drawOnScreen(int mouseX, int mouseY) {
-        if (test.isEnabled()) {
+        if (test.isEnabled())
             UiFontRenderer.getText().drawCenteredString(getName(), this.getX() + (this.getWidth() >> 1), (float) (this.getY() + (this.getHeight() - UiFontRenderer.getText().FONT_HEIGHT + 4) / 2), -1);
-        }
     }
 
     @Override
     public int getWidth() {
-        if (test.isEnabled()) {
-            return UiFontRenderer.getText().getFont().getWidth(getName());
-        }
-        return 0;
+        return (test.isEnabled()) ? UiFontRenderer.getText().getFont().getWidth(getName()) : 0;
     }
 
     @Override
     public int getHeight() {
-        if (test.isEnabled()) {
-            return UiFontRenderer.getText().FONT_HEIGHT;
-        }
-        return 0;
+        return (test.isEnabled()) ? UiFontRenderer.getText().FONT_HEIGHT : 0;
     }
 }
